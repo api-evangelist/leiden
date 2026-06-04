@@ -1,0 +1,37 @@
+---
+name: Leiden University
+description: Leiden University public developer/API footprint review for APIs.json cataloging.
+url: https://raw.githubusercontent.com/api-evangelist/leiden/refs/heads/main/review.yml
+created: '2026-06-03'
+modified: '2026-06-03'
+reviews:
+  - date: '2026-06-03'
+    rating: 2
+    summary: >-
+      Leiden University has no central public developer portal or documented
+      REST API program; most student/institutional systems are gated behind
+      SSO. The verifiable, machine-accessible footprint is library-centric: a
+      live OAI-PMH 2.0 endpoint for the Scholarly Publications repository
+      (Identify verb returns valid XML) and an active open-source GitHub
+      organization (LeidenUniversityLibrary) with Islandora, IIIF, and
+      Alma-Primo tooling. No endpoints were fabricated; only confirmed live
+      URLs are listed below.
+    endpoints:
+      - url: https://scholarlypublications.universiteitleiden.nl/oai2?verb=Identify
+        status: 200
+        note: Valid OAI-PMH 2.0 Identify response, repository "Leiden University Scholarly Publications".
+      - url: https://scholarlypublications.universiteitleiden.nl/about
+        status: 200
+        note: Repository about page documenting the OAI-PMH endpoint.
+      - url: https://github.com/LeidenUniversityLibrary
+        status: 200
+        note: Active GitHub org with library/Islandora/IIIF open-source tooling.
+      - url: https://www.universiteitleiden.nl/en
+        status: 200
+        note: Official university website (English).
+      - url: https://www.linkedin.com/school/leiden-university/
+        status: 200
+        note: Official LinkedIn school page.
+      - url: https://openaccess.leidenuniv.nl/
+        status: 200
+        note: Public web interface for the Scholarly Publications repository.

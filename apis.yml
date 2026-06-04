@@ -1,0 +1,65 @@
+---
+aid: leiden
+name: Leiden University
+description: >-
+  Leiden University (Universiteit Leiden) is the oldest university in the
+  Netherlands, founded in 1575, and ranks #141 in the QS World University
+  Rankings 2025. Its public, machine-accessible developer footprint is modest
+  and centered on its libraries rather than a central developer portal. Leiden
+  University Libraries operates an OAI-PMH metadata harvesting endpoint for its
+  Scholarly Publications repository and maintains an active open-source GitHub
+  organization (LeidenUniversityLibrary) with library, Islandora, and IIIF
+  tooling. There is no centrally documented public REST API program; most
+  institutional and student systems are gated behind SSO.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/leiden/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - Netherlands
+  - Library
+  - Open Access
+  - OAI-PMH
+  - Research
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
+apis:
+  - aid: leiden:scholarly-oai
+    name: Scholarly Publications OAI-PMH
+    description: >-
+      OAI-PMH 2.0 metadata harvesting endpoint for the Leiden University
+      Scholarly Publications repository, an Islandora-based institutional
+      repository providing open access to PhD theses, articles, journals, book
+      series, and conference proceedings since 2006. Metadata may be harvested
+      free of charge by search engines and open access initiatives.
+    humanURL: https://scholarlypublications.universiteitleiden.nl/about
+    baseURL: https://scholarlypublications.universiteitleiden.nl/oai2
+    tags: [ OAI-PMH, Open Access, Repository, Metadata, Library ]
+    properties:
+      - type: Documentation
+        url: https://scholarlypublications.universiteitleiden.nl/about
+      - type: Authentication
+        url: https://scholarlypublications.universiteitleiden.nl/oai2
+common:
+  - type: Website
+    url: https://www.universiteitleiden.nl/en
+  - type: GitHub
+    url: https://github.com/LeidenUniversityLibrary
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/leiden-university/
+  - type: Plans
+    url: plans/leiden-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/leiden-rate-limits.yml
+  - type: FinOps
+    url: finops/leiden-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
