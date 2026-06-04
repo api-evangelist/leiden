@@ -1,0 +1,21 @@
+{
+  "repo": "leiden",
+  "feeds": [
+    {
+      "source": "https://blogs.library.leiden.edu/",
+      "feed_url": "https://blogs.library.leiden.edu/feed/",
+      "title": "Universitaire Bibliotheken Leiden",
+      "saved": 0,
+      "method": "none"
+    },
+    {
+      "source": "https://www.universiteitleiden.nl/en/news",
+      "feed_url": "https://www.universiteitleiden.nl/en/news/rss.xml",
+      "title": "Leiden University News",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-06-03T00:00:00Z"
+}

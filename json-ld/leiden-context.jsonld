@@ -1,0 +1,72 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "dc": "http://purl.org/dc/elements/1.1/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "oai": "http://www.openarchives.org/OAI/2.0/",
+    "leiden": "https://scholarlypublications.universiteitleiden.nl/ns#",
+    "@vocab": "https://scholarlypublications.universiteitleiden.nl/ns#",
+
+    "University": "schema:CollegeOrUniversity",
+    "name": "schema:name",
+    "alternateName": "schema:alternateName",
+    "url": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "foundingDate": "schema:foundingDate",
+    "logo": {
+      "@id": "schema:logo",
+      "@type": "@id"
+    },
+    "sameAs": {
+      "@id": "schema:sameAs",
+      "@type": "@id"
+    },
+
+    "Repository": "oai:repository",
+    "repositoryName": "oai:repositoryName",
+    "baseURL": {
+      "@id": "oai:baseURL",
+      "@type": "@id"
+    },
+    "protocolVersion": "oai:protocolVersion",
+    "adminEmail": "oai:adminEmail",
+    "granularity": "oai:granularity",
+    "metadataPrefix": "oai:metadataPrefix",
+
+    "ScholarlyPublication": "schema:ScholarlyArticle",
+    "identifier": "dcterms:identifier",
+    "title": "dcterms:title",
+    "creator": "dcterms:creator",
+    "subject": "dcterms:subject",
+    "description": "dcterms:description",
+    "publisher": "dcterms:publisher",
+    "date": {
+      "@id": "dcterms:date",
+      "@type": "schema:Date"
+    },
+    "type": "dcterms:type",
+    "format": "dcterms:format",
+    "language": "dcterms:language",
+    "rights": "dcterms:rights",
+    "isPartOf": "dcterms:isPartOf"
+  },
+  "@type": "University",
+  "name": "Leiden University",
+  "alternateName": "Universiteit Leiden",
+  "url": "https://www.universiteitleiden.nl/en",
+  "foundingDate": "1575",
+  "sameAs": [
+    "https://github.com/LeidenUniversityLibrary",
+    "https://www.linkedin.com/school/leiden-university/"
+  ],
+  "Repository": {
+    "repositoryName": "Leiden University Scholarly Publications",
+    "baseURL": "https://scholarlypublications.universiteitleiden.nl/oai2",
+    "protocolVersion": "2.0",
+    "adminEmail": "beheer@library.leidenuniv.nl",
+    "granularity": "YYYY-MM-DDThh:mm:ssZ"
+  }
+}
