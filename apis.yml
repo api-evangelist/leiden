@@ -46,6 +46,8 @@ apis:
       - type: Authentication
         url: https://scholarlypublications.universiteitleiden.nl/oai2
 common:
+  - type: DomainSecurity
+    url: security/leiden-domain-security.yml
   - type: Website
     url: https://www.universiteitleiden.nl/en
   - type: GitHub
