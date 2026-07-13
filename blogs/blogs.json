@@ -13,9 +13,10 @@
       "feed_url": "https://www.universiteitleiden.nl/en/news/rss.xml",
       "title": "Leiden University News",
       "saved": 0,
-      "method": "none"
+      "method": "none",
+      "error": "fetch_failed: ConnectionResetError"
     }
   ],
   "post_count": 0,
-  "fetched": "2026-06-03T00:00:00Z"
+  "fetched": "2026-07-11T11:43:46Z"
 }
