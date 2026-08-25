@@ -12,10 +12,11 @@
       "source": "https://www.universiteitleiden.nl/en/news",
       "feed_url": "https://www.universiteitleiden.nl/en/news/rss.xml",
       "title": "Leiden University News",
-      "saved": 15,
-      "method": "none"
+      "saved": 0,
+      "method": "none",
+      "error": "parse_failed"
     }
   ],
   "post_count": 45,
-  "fetched": "2026-08-15T12:11:08Z"
+  "fetched": "2026-08-22T20:08:02Z"
 }
