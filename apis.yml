@@ -1,82 +1,266 @@
 ---
 aid: leiden
 name: Leiden University
+x-type: university
+x-category: Public Research University
 description: >-
-  Leiden University (Universiteit Leiden) is the oldest university in the
-  Netherlands, founded in 1575, and ranks #141 in the QS World University
-  Rankings 2025. Its public, machine-accessible developer footprint is modest
-  and centered on its libraries rather than a central developer portal. Leiden
-  University Libraries operates an OAI-PMH metadata harvesting endpoint for its
-  Scholarly Publications repository and maintains an active open-source GitHub
-  organization (LeidenUniversityLibrary) with library, Islandora, and IIIF
-  tooling. There is no centrally documented public REST API program; most
-  institutional and student systems are gated behind SSO.
+  Leiden University (Universiteit Leiden), founded 1575, is the oldest university
+  in the Netherlands and a founding member of LERU. It operates a federation of
+  bought systems, not a developer program: it publishes no public REST API and no
+  developer portal, api.universiteitleiden.nl, api.leidenuniv.nl,
+  developer.universiteitleiden.nl and data.universiteitleiden.nl do not resolve,
+  and neither of its GitHub organisations holds a single OpenAPI or Swagger file.
+  What it does operate, on its own infrastructure, are three verified
+  machine-readable surfaces: an OAI-PMH 2.0 endpoint for the Scholarly
+  Publications repository, a signed SAML 2.0 identity-provider metadata document
+  registered in the SURFconext national federation, and a PGP-signed RFC 9116
+  security.txt. Everything else that looks programmable belongs to a vendor
+  Leiden buys from — Ex Libris Primo, D2L Brightspace, SURF Yoda — and is
+  recorded below as a tenancy, never as Leiden's engineering.
 type: Index
 deliveryModel:
   model: saas
   open_source: false
-  commercial: true
-  callable_host: false
-  label: Hosted service · you call their endpoint
+  commercial: false
+  callable_host: true
+  label: Institution-operated endpoints · no commercial API program
   confidence: medium
   source:
-  - pricing
-  generated: '2026-08-28'
+  - probed
+  generated: '2026-09-01'
   method: derived
 accessModel:
   pricing: free
-  onboarding: unknown
+  onboarding: none
   trial: false
-  try_now: false
-  public: false
-  label: Free
-  confidence: medium
+  try_now: true
+  public: true
+  label: Free · anonymous metadata harvesting
+  confidence: high
   source:
-  - plans
-  generated: '2026-07-22'
+  - probed
+  generated: '2026-09-01'
   method: derived
-position: Consumer
-access: 3rd-Party
+position: Producing
+access: 1st-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/leiden.png
 url: https://raw.githubusercontent.com/api-evangelist/leiden/refs/heads/main/apis.yml
 tags:
-  - Education
-  - Higher Education
   - University
+  - Higher Education
+  - Education
   - Netherlands
-  - Library
+  - LERU
+  - Research
+  - Research Repository
   - Open Access
   - OAI-PMH
-  - Research
+  - Identity Federation
+  - Library
+  - Research Data Management
 created: '2026-06-03'
-modified: '2026-06-03'
+modified: '2026-09-01'
 specificationVersion: '0.23'
 apis:
   - aid: leiden:scholarly-oai
     name: Scholarly Publications OAI-PMH
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/leiden.png
+    x-operator: institution
     description: >-
-      OAI-PMH 2.0 metadata harvesting endpoint for the Leiden University
-      Scholarly Publications repository, an Islandora-based institutional
-      repository providing open access to PhD theses, articles, journals, book
-      series, and conference proceedings since 2006. Metadata may be harvested
-      free of charge by search engines and open access initiatives.
+      OAI-PMH 2.0 metadata harvesting endpoint for Leiden University Scholarly
+      Publications, the Islandora-based institutional repository holding PhD
+      theses, articles, journals, book series and conference proceedings.
+      Verified live: Identify returns repositoryName "Leiden University Scholary
+      Publications" and adminEmail beheer@library.leidenuniv.nl;
+      ListMetadataFormats advertises mods, nl_didl, oai_dc, oai_etdms and
+      oai_openaire; ListSets returns Dissertations, E-depot, Leiden University
+      Press, Scholarly Repository and open_access. The host resolves through
+      p-lb-019369.infra.leidenuniv.nl to Leiden's own network — this is Leiden's
+      endpoint, running open-source software Leiden itself hosts, not a vendor
+      SaaS tenancy.
     humanURL: https://scholarlypublications.universiteitleiden.nl/about
     baseURL: https://scholarlypublications.universiteitleiden.nl/oai2
-    tags: [ OAI-PMH, Open Access, Repository, Metadata, Library ]
+    tags: [ OAI-PMH, Open Access, Repository, Metadata, Library, Islandora ]
     properties:
       - type: Documentation
         url: https://scholarlypublications.universiteitleiden.nl/about
+      - type: Conformance
+        url: conformance/leiden-domain-standards.yml
+
+  - aid: leiden:saml-idp
+    name: Leiden University SAML 2.0 Identity Provider Metadata
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/leiden.png
+    x-operator: institution
+    description: >-
+      Leiden University's own SAML 2.0 identity-provider metadata document,
+      authored and XML-DSig signed by Leiden and served as text/xml from
+      login.uaccess.leidenuniv.nl. Asserts the scopes leidenuniv.nl and
+      umail.leidenuniv.nl. This is the machine-readable contract every service
+      Leiden federates with consumes, and it is entirely institution-operated.
+    humanURL: https://www.universiteitleiden.nl/en/about-us
+    baseURL: https://login.uaccess.leidenuniv.nl/nidp/saml2/metadata
+    tags: [ SAML, Identity Federation, SSO, Metadata ]
+    properties:
       - type: Authentication
-        url: https://scholarlypublications.universiteitleiden.nl/oai2
+        url: authentication/leiden-identity-federation.yml
+      - type: Conformance
+        url: conformance/leiden-domain-standards.yml
+
+  - aid: leiden:surfconext
+    name: SURFconext Federation Membership
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/leiden.png
+    x-operator: federation
+    description: >-
+      Leiden University's IDPSSODescriptor is published in the SURFconext
+      national identity federation aggregate operated by SURF B.V., carrying
+      mdui:DisplayName "Leiden University" and shibmd:Scope leidenuniv.nl. A
+      federation is shared by definition; the entity inside it is Leiden's. The
+      federation is operationally live — an anonymous request to Leiden's
+      Brightspace tenancy redirects to engine.surfconext.nl with a SAMLRequest.
+      SURFconext's own contract is SURF's and is not saved here.
+    humanURL: https://wiki.surfnet.nl/display/surfconext/
+    baseURL: https://metadata.surfconext.nl/idps-metadata.xml
+    tags: [ Identity Federation, SAML, eduGAIN, SURF, Netherlands ]
+    properties:
+      - type: Authentication
+        url: authentication/leiden-identity-federation.yml
+
+  - aid: leiden:datacite
+    name: DataCite Consortium Membership (VIOJ)
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/leiden.png
+    x-operator: registry
+    description: >-
+      Leiden University is a DataCite consortium_organization with symbol VIOJ,
+      organizationType academicInstitution, country NL, and rorId
+      https://ror.org/027bh9e22, registered 2023-02-08. Two repositories are
+      registered under it — vioj.dxnjnk "Leiden Repository"
+      (scholarlypublications.universiteitleiden.nl) and vioj.mcaazz "Yoda Portal
+      Leiden University". This is a registry Leiden is registered in; the
+      DataCite REST API contract is DataCite's and is not saved here. The
+      DataCite Commons human page (commons.datacite.org/providers/vioj) answers
+      our probes with HTTP 429 and is therefore not emitted as a pointer.
+    humanURL: https://api.datacite.org/providers/vioj
+    baseURL: https://api.datacite.org/providers/vioj
+    tags: [ DataCite, DOI, Registry, Persistent Identifiers, Research Data ]
+    properties:
+      - type: Conformance
+        url: conformance/leiden-domain-standards.yml
+
+  - aid: leiden:crossref
+    name: Crossref Membership — Leiden University Press
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/leiden.png
+    x-operator: registry
+    description: >-
+      Leiden University Press, Leiden University's own academic press, is
+      Crossref member 22598 with 2,588 registered DOIs. A registry membership and
+      a fact about the institution; the Crossref REST API contract is Crossref's
+      and is not saved here.
+    humanURL: https://www.crossref.org/members/prep/22598
+    baseURL: https://api.crossref.org/members/22598
+    tags: [ Crossref, DOI, Registry, Scholarly Publishing, University Press ]
+    properties:
+      - type: Conformance
+        url: conformance/leiden-domain-standards.yml
+
+  - aid: leiden:ror
+    name: ROR Registration
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/leiden.png
+    x-operator: registry
+    description: >-
+      Leiden University is registered in the Research Organization Registry as
+      https://ror.org/027bh9e22, domain leidenuniv.nl. A registry entry about the
+      institution; the ROR API contract is ROR's and is not saved here.
+    humanURL: https://ror.org/027bh9e22
+    baseURL: https://api.ror.org/organizations/027bh9e22
+    tags: [ ROR, Registry, Persistent Identifiers, Research ]
+    properties:
+      - type: Documentation
+        url: https://ror.org/027bh9e22
+
+  - aid: leiden:yoda
+    name: Yoda Research Data Management Portal (Leiden tenancy)
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/leiden.png
+    x-operator: tenant
+    description: >-
+      Leiden University's research data management portal runs as an
+      institution-specific tenancy of Yoda/iRODS hosted by SURF at
+      leiden-yoda.irods.surfsara.nl. The tenancy is real and is Leiden's — it is
+      registered with DataCite as repository vioj.mcaazz "Yoda Portal Leiden
+      University" — but the platform and its API contract are Yoda's and SURF's,
+      not Leiden's engineering, so no contract is saved under this slug.
+    humanURL: https://leiden-yoda.irods.surfsara.nl/
+    baseURL: https://leiden-yoda.irods.surfsara.nl/
+    tags: [ Research Data Management, Yoda, iRODS, SURF, Tenant ]
+    properties:
+      - type: Documentation
+        url: https://utrechtuniversity.github.io/yoda/
+
+  - aid: leiden:brightspace
+    name: D2L Brightspace LMS (Leiden tenancy)
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/leiden.png
+    x-operator: tenant
+    description: >-
+      Leiden's learning management system is a D2L Brightspace tenancy on
+      Leiden's own hostname, brightspace.universiteitleiden.nl, authenticating
+      through SURFconext. Its D2L Valence API version manifest is readable
+      anonymously at /d2l/api/versions/ and returns the product/version matrix
+      (bas, ep, le, lp and others). That contract is D2L's, shared by every
+      Brightspace customer, and is deliberately not saved here — only the tenancy
+      is recorded.
+    humanURL: https://brightspace.universiteitleiden.nl/
+    baseURL: https://brightspace.universiteitleiden.nl/d2l/api/versions/
+    tags: [ LMS, Brightspace, D2L, Learning, Tenant ]
+    properties:
+      - type: Documentation
+        url: https://docs.valence.desire2learn.com/
+
+  - aid: leiden:primo
+    name: Library Discovery Catalogue (Ex Libris Primo VE tenancy)
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/leiden.png
+    x-operator: tenant
+    description: >-
+      Leiden University Libraries' discovery catalogue at catalogue.leidenuniv.nl
+      CNAMEs to leiden.primo.exlibrisgroup.com and serves Ex Libris Primo VE with
+      view id 31UKB_LEU:UBL_NDE. The institution-specific hostname makes this
+      Leiden's tenancy; the discovery platform and any API over it are Ex Libris
+      Group's, so no contract is saved under this slug.
+    humanURL: https://catalogue.leidenuniv.nl/
+    baseURL: https://catalogue.leidenuniv.nl/nde/search?vid=31UKB_LEU%3AUBL_NDE
+    tags: [ Library, Discovery, Primo, Ex Libris, Tenant ]
+    properties:
+      - type: Documentation
+        url: https://www.library.universiteitleiden.nl/
 common:
-  - type: DomainSecurity
-    url: security/leiden-domain-security.yml
   - type: Website
     url: https://www.universiteitleiden.nl/en
-  - type: GitHub
+  - type: Website
+    url: https://www.leidenuniv.nl/
+  - type: SecurityTxt
+    url: https://www.universiteitleiden.nl/.well-known/security.txt
+  - type: VulnerabilityDisclosure
+    url: https://www.staff.universiteitleiden.nl/binaries/content/assets/ul2staff/ict/responsible-disclosure-eng.pdf
+  - type: PrivacyPolicy
+    url: https://www.organisatiegids.universiteitleiden.nl/en/regulations/general/privacy-statements
+  - type: TermsOfService
+    url: https://www.organisatiegids.universiteitleiden.nl/en/regulations/general/university-website-disclaimer
+  - type: IdentityFederation
+    url: authentication/leiden-identity-federation.yml
+  - type: ResearchRepository
+    url: https://scholarlypublications.universiteitleiden.nl/
+  - type: LibraryCatalog
+    url: https://catalogue.leidenuniv.nl/
+  - type: CourseCatalog
+    url: https://studiegids.universiteitleiden.nl/
+  - type: OpenData
+    url: https://home.strw.leidenuniv.nl/~moldata/
+  - type: GitHubOrganization
     url: https://github.com/LeidenUniversityLibrary
+  - type: GitHubOrganization
+    url: https://github.com/CWTSLeiden
   - type: LinkedIn
     url: https://www.linkedin.com/school/leiden-university/
+  - type: DomainSecurity
+    url: security/leiden-domain-security.yml
   - type: Plans
     url: plans/leiden-plans-pricing.yml
   - type: RateLimits
@@ -85,6 +269,45 @@ common:
     url: finops/leiden-finops.yml
   - type: Review
     url: review.yml
+x-coverage:
+  state: covered
+  reason: no_public_api
+  detail: >-
+    Leiden University operates no public REST API and no developer program —
+    api.universiteitleiden.nl, api.leidenuniv.nl, developer.universiteitleiden.nl,
+    developers.universiteitleiden.nl, data.universiteitleiden.nl and
+    opendata.universiteitleiden.nl all return NXDOMAIN, /llms.txt is a real 404,
+    and GitHub code search across both LeidenUniversityLibrary (110 repos) and
+    CWTSLeiden (13 repos) returns zero files named openapi or swagger. The
+    profile is nonetheless fully covered: three institution-operated
+    machine-readable surfaces were verified live (an OAI-PMH 2.0 endpoint on
+    Leiden's own infrastructure, a signed SAML 2.0 IdP metadata document, and a
+    PGP-signed RFC 9116 security.txt), alongside three vendor tenancies
+    (Ex Libris Primo, D2L Brightspace, SURF Yoda) and three registry memberships
+    (DataCite VIOJ, Crossref 22598, ROR 027bh9e22). Note for future runs: the
+    universiteitleiden.nl estate answers header-poor clients with HTTP 200 and a
+    "Toegang geblokkeerd / Access Blocked" body, which reads as a soft-404 —
+    a full browser header set is required and then 404s are honest.
+  evidence:
+    - url: https://scholarlypublications.universiteitleiden.nl/oai2?verb=Identify
+      status: 200
+    - url: https://login.uaccess.leidenuniv.nl/nidp/saml2/metadata
+      status: 200
+    - url: https://www.universiteitleiden.nl/.well-known/security.txt
+      status: 200
+    - url: https://metadata.surfconext.nl/idps-metadata.xml
+      status: 200
+    - url: https://api.datacite.org/providers/vioj
+      status: 200
+    - url: https://brightspace.universiteitleiden.nl/d2l/api/versions/
+      status: 200
+    - url: https://www.universiteitleiden.nl/llms.txt
+      status: 404
+    - url: https://api.universiteitleiden.nl/
+      status: 0
+    - url: https://data.universiteitleiden.nl/
+      status: 0
+  checked: '2026-09-01'
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
