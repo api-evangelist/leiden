@@ -1,0 +1,122 @@
+---
+name: Leiden University — Education Domain Standard Conformance
+description: >-
+  Which of the Kin Score `education` regime domain standards Leiden University
+  demonstrably conforms to, evidenced by live probes of surfaces Leiden itself
+  operates or is registered in. Standards NOT evidenced are listed under
+  not_evidenced so this file records an honest absence rather than a silent one.
+generated: '2026-09-01'
+method: derived
+derivation: live-probe
+x-source-url: https://scholarlypublications.universiteitleiden.nl/oai2?verb=Identify
+regime: education
+institution: Leiden University
+ror: https://ror.org/027bh9e22
+
+conformance:
+  - standard: oai-pmh
+    status: conformant
+    operator: institution
+    protocol_version: '2.0'
+    endpoint: https://scholarlypublications.universiteitleiden.nl/oai2
+    evidence:
+      - url: https://scholarlypublications.universiteitleiden.nl/oai2?verb=Identify
+        status: 200
+        note: >-
+          Returns a valid OAI-PMH 2.0 Identify response.
+          repositoryName "Leiden University Scholary Publications",
+          adminEmail beheer@library.leidenuniv.nl,
+          repositoryIdentifier scholarlypublications.universiteitleiden.nl,
+          granularity YYYY-MM-DDThh:mm:ssZ, deletedRecord transient.
+      - url: https://scholarlypublications.universiteitleiden.nl/oai2?verb=ListMetadataFormats
+        status: 200
+        note: >-
+          Advertises metadataPrefix mods, nl_didl, oai_dc, oai_etdms and
+          oai_openaire — the OpenAIRE 4.0 literature profile.
+      - url: https://scholarlypublications.universiteitleiden.nl/oai2?verb=ListSets
+        status: 200
+        note: >-
+          Sets include Dissertations, E-depot, Leiden University Press,
+          Scholarly Repository, LUMC and open_access.
+    host_ownership: >-
+      scholarlypublications.universiteitleiden.nl resolves via
+      p-lb-019369.infra.leidenuniv.nl to 132.229.29.84 — Leiden University's own
+      infrastructure, not a vendor CNAME.
+
+  - standard: saml
+    status: conformant
+    operator: institution
+    protocol_version: 'SAML 2.0'
+    endpoint: https://login.uaccess.leidenuniv.nl/nidp/saml2/metadata
+    evidence:
+      - url: https://login.uaccess.leidenuniv.nl/nidp/saml2/metadata
+        status: 200
+        note: >-
+          21,287 bytes of XML-DSig signed SAML 2.0 md:EntityDescriptor served as
+          text/xml from Leiden University's own host, entityID
+          https://login.uaccess.leidenuniv.nl/nidp/saml2/metadata.
+      - url: https://metadata.surfconext.nl/idps-metadata.xml
+        status: 200
+        note: >-
+          Leiden's IDPSSODescriptor is published in the SURFconext national
+          federation aggregate with shibmd:Scope leidenuniv.nl and
+          umail.leidenuniv.nl, and mdui:DisplayName "Leiden University".
+      - url: https://brightspace.universiteitleiden.nl/
+        status: 200
+        note: >-
+          Anonymous request redirects to engine.surfconext.nl SAMLRequest —
+          the federation is operationally in use, not merely registered.
+
+  - standard: datacite
+    status: conformant
+    operator: registry
+    member_id: vioj
+    evidence:
+      - url: https://api.datacite.org/providers/vioj
+        status: 200
+        note: >-
+          DataCite consortium_organization "Leiden University", symbol VIOJ,
+          country NL, organizationType academicInstitution,
+          rorId https://ror.org/027bh9e22, created 2023-02-08.
+      - url: https://api.datacite.org/clients?query=Leiden
+        status: 200
+        note: >-
+          Two repositories under VIOJ — vioj.dxnjnk "Leiden Repository"
+          (scholarlypublications.universiteitleiden.nl) and vioj.mcaazz
+          "Yoda Portal Leiden University" (leiden-yoda.irods.surfsara.nl).
+
+  - standard: crossref
+    status: conformant
+    operator: registry
+    member_id: '22598'
+    evidence:
+      - url: https://api.crossref.org/members?query=Leiden
+        status: 200
+        note: >-
+          Crossref member 22598, primary-name "Leiden University Press",
+          Leiden University's own academic press, with 2,588 registered DOIs.
+
+not_evidenced:
+  - standard: shibboleth
+    note: >-
+      Leiden federates via SAML 2.0 through SURFconext, but the IdP at
+      login.uaccess.leidenuniv.nl is a NetIQ/NIDP endpoint, not Shibboleth
+      software. Recorded as saml only; no Shibboleth-specific evidence found.
+  - standard: lti
+    note: >-
+      Leiden runs a D2L Brightspace tenancy which supports LTI, but LTI is D2L's
+      conformance, not Leiden's, and no Leiden-authored LTI contract was found.
+  - standard: orcid
+    note: >-
+      No Leiden-operated ORCID integration contract or member record was probed
+      successfully. Not claimed.
+  - standard: scim
+    note: Not found.
+  - standard: oneroster
+    note: Not found.
+  - standard: ed-fi
+    note: Not found.
+  - standard: caliper
+    note: Not found.
+  - standard: qti
+    note: Not found.

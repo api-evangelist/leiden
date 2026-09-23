@@ -1,0 +1,77 @@
+---
+name: Leiden University — Identity Federation
+description: >-
+  Leiden University's own SAML 2.0 identity provider and its registration in
+  SURFconext, the Dutch national research and education identity federation.
+  This is the strongest institution-operated machine-readable surface Leiden
+  publishes: the metadata document is authored and signed by Leiden, served from
+  Leiden's own hostname, and consumed by every service Leiden federates with.
+generated: '2026-09-01'
+method: derived
+derivation: live-probe
+x-source-url: https://login.uaccess.leidenuniv.nl/nidp/saml2/metadata
+
+identity_provider:
+  x-operator: institution
+  entity_id: https://login.uaccess.leidenuniv.nl/nidp/saml2/metadata
+  metadata_url: https://login.uaccess.leidenuniv.nl/nidp/saml2/metadata
+  protocol: SAML 2.0
+  content_type: text/xml
+  signed: true
+  signature_algorithm: http://www.w3.org/2001/04/xmldsig-more#rsa-sha256
+  canonicalization: http://www.w3.org/2001/10/xml-exc-c14n#
+  scopes:
+    - leidenuniv.nl
+    - umail.leidenuniv.nl
+  display_name:
+    en: Leiden University
+    nl: Universiteit Leiden
+  probed:
+    url: https://login.uaccess.leidenuniv.nl/nidp/saml2/metadata
+    status: 200
+    bytes: 21287
+    date: '2026-09-01'
+
+federation:
+  x-operator: federation
+  name: SURFconext
+  operator_org: SURF B.V.
+  country: NL
+  aggregate_metadata: https://metadata.surfconext.nl/idps-metadata.xml
+  sso_engine: https://engine.surfconext.nl/
+  logo: https://static.surfconext.nl/logos/idp/leiden.png
+  note: >-
+    A federation is shared by definition. The entry recorded here is Leiden's own
+    IDPSSODescriptor inside the SURFconext aggregate — it is a fact about Leiden,
+    not a misattribution of SURF's contract.
+  probed:
+    - url: https://metadata.surfconext.nl/idps-metadata.xml
+      status: 200
+      bytes: 1032474
+      date: '2026-09-01'
+    - url: https://brightspace.universiteitleiden.nl/
+      status: 200
+      date: '2026-09-01'
+      note: >-
+        Redirects anonymous callers to
+        engine.surfconext.nl/authentication/idp/single-sign-on with a SAMLRequest,
+        confirming the federation is in production use.
+
+vulnerability_disclosure:
+  x-operator: institution
+  security_txt: https://www.universiteitleiden.nl/.well-known/security.txt
+  canonical: https://www.universiteitleiden.nl/binaries/content/assets/security/security.txt
+  contact: mailto:abuse@leidenuniv.nl
+  expires: '2026-11-01T23:59:59.000Z'
+  preferred_languages: [ nl, en ]
+  encryption: https://pgp.surfnet.nl/pks/lookup?op=get&search=0x67c74b56b8a3c98f83ffdfc609fc67fe441b238e
+  policy: https://www.staff.universiteitleiden.nl/binaries/content/assets/ul2staff/ict/responsible-disclosure-eng.pdf
+  pgp_signed: true
+  standard: RFC 9116
+  probed:
+    url: https://www.universiteitleiden.nl/.well-known/security.txt
+    status: 200
+    date: '2026-09-01'
+    note: >-
+      301 redirect to the canonical binaries path, then 200 text/plain carrying a
+      PGP-signed RFC 9116 document. Unexpired at time of probe.
