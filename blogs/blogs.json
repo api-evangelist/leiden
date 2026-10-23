@@ -13,15 +13,14 @@
       "source": "https://www.universiteitleiden.nl/en/news",
       "feed_url": "https://www.universiteitleiden.nl/en/news/rss.xml",
       "title": "Leiden University News",
-      "saved": 0,
+      "saved": 15,
       "method": "none",
       "nature": "vendor-blog",
-      "nature_basis": "path_blog",
-      "error": "parse_failed"
+      "nature_basis": "path_blog"
     }
   ],
-  "post_count": 105,
-  "fetched": "2026-10-10T12:59:17Z",
+  "post_count": 120,
+  "fetched": "2026-10-17T14:27:21Z",
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "path_blog",
   "feed_nature_note": "Whether these posts are the vendor publishing or its support community, decided on the URL path grammar of the saved posts -- not the hostname, which carries both on Khoros, and not author diversity, which flags large vendor blogs as forums. 'undetermined' means undetermined."
