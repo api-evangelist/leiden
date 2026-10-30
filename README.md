@@ -1,4 +1,4 @@
-# Leiden University (leiden)
+# Leiden University
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,47 +64,118 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Leiden University (Universiteit Leiden) is the oldest university in the Netherlands, founded in 1575, and ranks #141 in the QS World University Rankings 2025. Its public, machine-accessible developer footprint is library-centric: an OAI-PMH metadata endpoint for its Scholarly Publications repository and an active open-source GitHub organization. There is no central documented public REST API program; most institutional and student systems are gated behind SSO.
+Leiden University (Universiteit Leiden), founded 1575, is the oldest university in the Netherlands and a founding member of LERU. It operates a federation of bought systems, not a developer program: it publishes no public REST API and no developer portal, api.universiteitleiden.nl, api.leidenuniv.nl, developer.universiteitleiden.nl and data.universiteitleiden.nl do not resolve, and neither of its GitHub organisations holds a single OpenAPI or Swagger file. What it does operate, on its own infrastructure, are three verified machine-readable surfaces: an OAI-PMH 2.0 endpoint for the Scholarly Publications repository, a signed SAML 2.0 identity-provider metadata document registered in the SURFconext national federation, and a PGP-signed RFC 9116 security.txt. Everything else that looks programmable belongs to a vendor Leiden buys from — Ex Libris Primo, D2L Brightspace, SURF Yoda — and is recorded below as a tenancy, never as Leiden's engineering.
 
-- APIs.json: https://raw.githubusercontent.com/api-evangelist/leiden/refs/heads/main/apis.yml
-- Run with Naftiko: https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=leiden-api-evangelist&utm_content=repo
+**Areas:** University · Higher Education · Education · Netherlands · LERU · Research · Research Repository · Open Access · OAI-PMH · Identity Federation · Library · Research Data Management
 
-## Type
+## Leiden University on APIs.io
 
-- Index
-- Consumer
-- 3rd-Party
+Everything profiled for Leiden University is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/leiden/](https://apis.io/providers/leiden/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (9)
 
-Education, Higher Education, University, Netherlands, Library, Open Access, OAI-PMH, Research
+- [Scholarly Publications OAI-PMH](https://apis.io/apis/leiden/scholarly-oai/) — OAI-PMH 2.0 metadata harvesting endpoint for Leiden University Scholarly Publications, the Islandora-based institutional repository holding PhD theses,…
+- [Leiden University SAML 2.0 Identity Provider Metadata](https://apis.io/apis/leiden/saml-idp/) — Leiden University's own SAML 2.0 identity-provider metadata document, authored and XML-DSig signed by Leiden and served as text/xml from…
+- [SURFconext Federation Membership](https://apis.io/apis/leiden/surfconext/) — Leiden University's IDPSSODescriptor is published in the SURFconext national identity federation aggregate operated by SURF B.V., carrying mdui:DisplayName…
+- [DataCite Consortium Membership (VIOJ)](https://apis.io/apis/leiden/datacite/) — Leiden University is a DataCite consortium_organization with symbol VIOJ, organizationType academicInstitution, country NL, and rorId…
+- [Crossref Membership — Leiden University Press](https://apis.io/apis/leiden/crossref/) — Leiden University Press, Leiden University's own academic press, is Crossref member 22598 with 2,588 registered DOIs. A registry membership and a fact about…
+- [ROR Registration](https://apis.io/apis/leiden/ror/) — Leiden University is registered in the Research Organization Registry as https://ror.org/027bh9e22, domain leidenuniv.nl. A registry entry about the…
+- [Yoda Research Data Management Portal (Leiden tenancy)](https://apis.io/apis/leiden/yoda/) — Leiden University's research data management portal runs as an institution-specific tenancy of Yoda/iRODS hosted by SURF at leiden-yoda.irods.surfsara.nl.…
+- [D2L Brightspace LMS (Leiden tenancy)](https://apis.io/apis/leiden/brightspace/) — Leiden's learning management system is a D2L Brightspace tenancy on Leiden's own hostname, brightspace.universiteitleiden.nl, authenticating through…
+- [Library Discovery Catalogue (Ex Libris Primo VE tenancy)](https://apis.io/apis/leiden/primo/) — Leiden University Libraries' discovery catalogue at catalogue.leidenuniv.nl CNAMEs to leiden.primo.exlibrisgroup.com and serves Ex Libris Primo VE with view…
 
-## APIs
+### Published properties
 
-- **Scholarly Publications OAI-PMH** — OAI-PMH 2.0 metadata harvesting for the Islandora-based Leiden University Scholarly Publications repository (theses, articles, journals, proceedings since 2006). Docs: https://scholarlypublications.universiteitleiden.nl/about — Base: https://scholarlypublications.universiteitleiden.nl/oai2
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Plans / Rate Limits / FinOps
+#### JSON-LD (1)
 
-- Plans & Pricing: [plans/leiden-plans-pricing.yml](plans/leiden-plans-pricing.yml)
-- Rate Limits: [rate-limits/leiden-rate-limits.yml](rate-limits/leiden-rate-limits.yml)
-- FinOps: [finops/leiden-finops.yml](finops/leiden-finops.yml)
+Linked-data contexts for the provider's vocabulary.
 
-## Timestamps
+- [Leiden Context](https://apis.io/jsonld/leiden/leiden-context/)
 
-- Created: 2026-06-03
-- Modified: 2026-06-03
+#### Security (1)
 
-## Common Properties
+Authentication, trust centre, and vulnerability disclosure.
 
-- Website: https://www.universiteitleiden.nl/en
-- GitHub: https://github.com/LeidenUniversityLibrary
-- LinkedIn: https://www.linkedin.com/school/leiden-university/
-- Review: [review.yml](review.yml)
+- [Leiden Domain Security](https://apis.io/security/leiden/leiden-domain-security/)
 
-## Notes
+#### Plans and pricing (1)
 
-All entries reflect only publicly verifiable resources confirmed live on 2026-06-03. The OAI-PMH endpoint returned a valid Identify response. No central developer portal, documented REST API, sign-up, or published rate limits were found; student and institutional systems are gated behind SSO. No endpoints were invented.
+Published plans, tiers and prices.
 
-## Maintainers
+- [Leiden Plans Pricing](https://apis.io/plans/leiden/leiden-plans-pricing/)
 
-- Kin Lane — kin@apievangelist.com
+#### Rate limits (1)
+
+Published request limits.
+
+- [Leiden Rate Limits](https://apis.io/rate-limits/leiden/leiden-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Leiden Finops](https://apis.io/finops/leiden/leiden-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.universiteitleiden.nl/en)
+- [Terms of service](https://www.organisatiegids.universiteitleiden.nl/en/regulations/general/university-website-disclaimer)
+- [Privacy policy](https://www.organisatiegids.universiteitleiden.nl/en/regulations/general/privacy-statements)
+- [GitHub](https://github.com/LeidenUniversityLibrary)
+
+## API Evangelist rating
+
+**Kin Score 24.2** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 82.1 |
+| Contract quality | 14.3 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 21.4 |
+| Access clarity | 26.3 |
+
+**Agent readiness 3.1** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 30.4** — Education & Research
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/leiden/](https://apis.io/providers/leiden/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Leiden University: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/leiden/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
